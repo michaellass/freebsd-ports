@@ -29,7 +29,8 @@ ICINGACGIURL?=	${ICINGAHTMURL}/cgi-bin
 
 ETCDIR=		${PREFIX}/etc/icinga
 
-CPPFLAGS+=	-I${LOCALBASE}/include
+CFLAGS+=	-fcommon
+CPPFLAGS+=	-I${LOCALBASE}/include -fcommon
 LIBS+=		-L${LOCALBASE}/lib
 
 CONFIGURE_ARGS=	--with-command-user=${ICINGAUSER} \
