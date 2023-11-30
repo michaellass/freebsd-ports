@@ -19,6 +19,8 @@ CFLAGS+=	-I${LOCALBASE}/include
 ALL_TARGET=	classicui-standalone
 INSTALL_TARGET=	install-classicui-standalone install-classicui-standalone-conf
 
+CFLAGS += -fcommon
+
 post-patch:
 	@${REINPLACE_CMD} -e 's#775#755#g; s#664#644#g' \
 		${WRKSRC}/html/Makefile.in

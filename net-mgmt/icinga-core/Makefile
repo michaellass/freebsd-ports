@@ -35,7 +35,7 @@ NAGPLUGINS_RUN_DEPENDS=	${LOCALBASE}/libexec/nagios/check_nagios:net-mgmt/nagios
 .if ${PORT_OPTIONS:MIDOUTILS}
 LIB_DEPENDS+=		libdbi.so:databases/libdbi
 CONFIGURE_ARGS+=	--enable-idoutils \
-			--enable-ssl \
+			--disable-ssl \
 			--with-dbi-lib=${LOCALBASE}/lib \
 			--with-dbi-inc=${LOCALBASE}/include
 ALL_TARGET+=		idoutils
@@ -47,6 +47,9 @@ PLIST_SUB+=		IDOUTILS=""
 PLIST_SUB+=		IDOUTILS="@comment "
 CONFIGURE_ARGS+=	--disable-idoutils
 .endif
+
+CFLAGS += -Wno-int-conversion
+LDFLAGS += -Wl,--allow-multiple-definition
 
 post-patch:
 	@${REINPLACE_CMD} -e 's#775#755#g; s#664#644#g' \
